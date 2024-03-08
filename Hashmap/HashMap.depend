@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1707336708 source:e:\c++ course\hashmap\main.cpp
+	<iostream>
+	<map>
+	<unordered_map>
+
