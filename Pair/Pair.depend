@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1703362338 source:e:\c++ course\pair\main.cpp
+	<iostream>
+	<vector>
+	<bits/stdc++.h>
+
