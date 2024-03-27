@@ -1,0 +1,96 @@
+#include <iostream>
+using namespace std;
+#define capacity 10
+
+class queue {
+    int* queueArray;
+    int front;
+    int rear;
+
+public:
+    queue() {
+        queueArray = new int[capacity]; // Memory allocation
+        front = -1;
+        rear = -1;
+    }
+
+    void enqueue(int x) {
+        if ((rear + 1) % capacity == front) {
+            cout << "Queue Overflow" << endl;
+            return;
+        } else if (front == -1 && rear == -1) {
+            front = rear = 0; // For the first element
+        } else {
+            rear = (rear + 1) % capacity;
+        }
+        queueArray[rear] = x;
+    }
+
+    void dequeue() {
+        if (front == -1) {
+            cout << "No elements in Queue" << endl;
+            return;
+        } else if (front == rear) {
+            front = rear = -1; // Reset when the last element is dequeued
+        } else {
+            front = (front + 1) % capacity;
+        }
+    }
+
+    int peek() {
+        if (front == -1) {
+            cout << "No elements in Queue" << endl;
+            return -1;
+        }
+        return queueArray[front];
+    }
+
+    bool empty() {
+        return (front == -1);
+    }
+
+    void display() {
+        if (empty()) {
+            cout << "Queue is empty." << endl;
+            return;
+        }
+        int i = front;
+        cout << "Queue elements: ";
+        do {
+            cout << queueArray[i] << " ";
+            i = (i + 1) % capacity;
+        } while (i != (rear + 1) % capacity);
+        cout << endl;
+    }
+};
+
+int main() {
+    queue q;
+    q.enqueue(1);
+    q.enqueue(2);
+    q.enqueue(3);
+    q.display();
+    q.enqueue(4);
+    q.enqueue(5);
+
+    cout << q.peek() << endl;
+    q.dequeue();
+    q.display();
+
+    cout << q.peek() << endl;
+    q.dequeue();
+
+    cout << q.peek() << endl;
+    q.dequeue();
+
+    cout << q.empty() << endl;
+
+    cout << q.peek() << endl;
+    q.dequeue();
+
+    q.dequeue();
+
+    cout << q.empty() << endl;
+
+    return 0;
+}
